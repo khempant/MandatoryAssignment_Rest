@@ -4,7 +4,7 @@ namespace ItemLibrary
 {
     public class Book
     {
-        public string IsbnNo { get; set; }
+        public string Isbn13 { get; set; }
         public string Author { get; set; }
         public string Name { get; set; }
         public int PageNo { get; set; }
@@ -13,7 +13,7 @@ namespace ItemLibrary
 
         public Book(string isbnNo, string author, string name, int pageNo, string course)
         {
-            IsbnNo = isbnNo;
+            Isbn13 = isbnNo;
             Author = author;
             Name = name;
             PageNo = pageNo;
@@ -21,7 +21,7 @@ namespace ItemLibrary
         }
         public override string ToString()
         {
-            return $"{IsbnNo}-{Author}-{Name}-{PageNo}-{Course}";
+            return $"{Isbn13}-{Author}-{Name}-{PageNo}-{Course}";
         }
     }
 }

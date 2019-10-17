@@ -20,31 +20,41 @@ namespace MandatoryAssignment_Rest.Controllers
             new Book("1234562965743","Boris","ViceCity",58,"Games"),
             new Book("1234568896513","Michel","Algebra",68,"Mathematics"),
             new Book("1234567896842","William","Lyrics",65,"MusicsStudies"),
-        }
-        // GET: api/Items
+            
+        };
+        // GET: api/Book
         [HttpGet]
-        public IEnumerable<Book> Get()
+        public ActionResult<IEnumerable<Book>> Get()
         {
             return BookList;
         }
 
-        // GET: api/Items/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        // GET: api/Book/5
+        [HttpGet("{id}")]
+        public ActionResult<Book> Get(string id)
         {
-            
+            return BookList.Find(e => e.Isbn13 == id);
         }
 
-        // POST: api/Items
+        // POST: api/Book
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Book newBookList)
         {
+            BookList.Add(newBookList);
         }
 
-        // PUT: api/Items/5
+        // PUT: api/Book/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(string id, [FromBody] Book newBookList)
         {
+            Delete(id);
+            Post(newBookList);
+
+        }
+
+        private void Delete(string id)
+        {
+            BookList.RemoveAll(e => e.Isbn13 == id);
         }
 
         // DELETE: api/ApiWithActions/5
